@@ -1,6 +1,4 @@
 
-const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-
 const form = document.getElementById("search-form");
 const cityInput = document.getElementById("city-input");
 const loading = document.getElementById("loading");
@@ -99,5 +97,4 @@ form.addEventListener("submit", (e) => {
     }
 });
 
-// Initialize
 loadHistory();
