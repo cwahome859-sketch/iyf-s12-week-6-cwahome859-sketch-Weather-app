@@ -1,15 +1,13 @@
-// API_KEY is NOT declared here — it comes from config.js (git-ignored), loaded first.
-// Never paste your key into this file: once committed, it is in your git history forever.
+
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
-// DOM Elements
 const form = document.getElementById("search-form");
 const cityInput = document.getElementById("city-input");
 const loading = document.getElementById("loading");
 const error = document.getElementById("error");
 const weatherDisplay = document.getElementById("weather-display");
 
-// Elements to update
+
 const cityName = document.getElementById("city-name");
 const weatherIcon = document.getElementById("weather-icon");
 const temperature = document.getElementById("temperature");
@@ -39,7 +37,7 @@ async function getWeather(city) {
         saveToHistory(city);
         
     } catch (err) {
-        // fetch itself rejects (TypeError) only when there is no network at all
+        
         showError(err.name === "TypeError" ? "Network error — check your connection" : err.message);
     } finally {
         hideLoading();
@@ -47,9 +45,8 @@ async function getWeather(city) {
 }
 
 function displayWeather(data) {
-    // Update all the DOM elements with weather data
+
     cityName.textContent = `${data.name}, ${data.sys.country}`;
-    // ... complete the rest
     
     weatherDisplay.classList.remove("hidden");
 }
@@ -73,14 +70,27 @@ function hideError() {
 }
 
 function saveToHistory(city) {
-    // Save to localStorage
+    const seriaLizedData = json.stringify(data);
+    localStorage.setItem(Key, seriaLizedData);
+
+}
 }
 
 function loadHistory() {
-    // Load from localStorage and display
+   const rawData = localStorage.getItem("weatherHistory");
+    const historyList =document.getElementById("historyList");
+
+    historyList.innerHTML = "";
+
+    const savedCities =rawData ? JSON.parse(rawData) : {}
+
+    savedCities.forEach(city) => {
+        const list = document.createElement(("li");
+        list.textContent = city;
+        
+    } 
 }
 
-// Event Listeners
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const city = cityInput.value.trim();
